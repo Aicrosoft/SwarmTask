@@ -59,6 +59,14 @@ namespace CS.TaskScheduling
 
     /// <summary>
     /// 资源的参数的键值对
+    /// <example>
+    ///  <add key="Sender" value="">
+    ///	  <text>
+    ///	  <![CDATA[
+    ///       带格式的文本内容
+    ///       ]]>
+    ///	  </text>
+    /// </example>
     /// </summary>
     [Serializable]
     public struct ParamInfo
@@ -147,6 +155,11 @@ namespace CS.TaskScheduling
         /// Web服务
         /// </summary>
         WebService,
+
+        /// <summary>
+        /// Email服务器
+        /// </summary>
+        EmailService,
 
     }
 

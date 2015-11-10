@@ -146,8 +146,10 @@ namespace CS.TaskScheduling
                 return null;
             }
             var delayMilSeconds = nextRunInterval.Value.TotalMilliseconds;
-            if (delayMilSeconds > _watcher.Interval *  3)
+            var interval = (TimeSpan) TaskSetting.WatchTimer.WorkingInterval;
+            if (delayMilSeconds >  interval.TotalMilliseconds *   3)
             {
+                //_log.Warn($"delayMilSeconds:{delayMilSeconds};_watcher.Interval:{interval}");
                 _log.Debug($"○ [{taskSetting}] 下次启动时间间隔为:{nextRunInterval}，远小于监视线程间隔，暂不执行。");
                 return null;
             }

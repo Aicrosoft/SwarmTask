@@ -73,9 +73,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CSHive\CSHive\CSHive\CSHive[v3.0].csproj">
+    <ProjectReference Include="..\..\..\CSHive\CSHive\CSHive\CSHive[v3.1].csproj">
       <Project>{f647b933-64ca-473f-945e-6ac0df657e22}</Project>
-      <Name>CSHive[v3.0]</Name>
+      <Name>CSHive[v3.1]</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

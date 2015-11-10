@@ -63,7 +63,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 共公资源配置信息引用
         /// </summary>
-        internal ResourceCollection Resources { get; set; }
+        internal protected ResourceCollection Resources { get; set; }
 
         /// <summary>
         /// 系统自带的预定义扩展
