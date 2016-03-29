@@ -3,9 +3,14 @@ using log4net;
 
 namespace CS.Diagnostics
 {
-    public abstract class Logger:ITracer
+    /// <summary>
+    /// 自定义的Logger
+    /// <remarks>
+    /// 通过实现ITracer来适配不同的Loger
+    /// </remarks>
+    /// </summary>
+    public class Logger : ITracer
     {
-
         protected ILog Log { get; set; }
 
         public bool IsDebugEnabled => Log.IsDebugEnabled;
@@ -14,17 +19,54 @@ namespace CS.Diagnostics
         public bool IsErrorEnabled => Log.IsErrorEnabled;
         public bool IsFatalEnabled => Log.IsFatalEnabled;
 
+        /// <summary>
+        /// 初始化为应用日志
+        /// </summary>
+        public Logger()
+        {
+            Log = LogManager.GetLogger("App");
+        }
+
+        /// <summary>
+        /// 初始化为开发日志
+        /// </summary>
+        /// <param name="type"></param>
+        public Logger(Type type)
+        {
+            Log = LogManager.GetLogger(type);
+        }
+
+        /// <summary>
+        /// 直接回返开发日志
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static ITracer GetSysLog(Type type)
+        {
+            var log = new Logger(type);
+            return log;
+        }
+
+        /// <summary>
+        /// 直接返回应用日志
+        /// </summary>
+        /// <returns></returns>
+        public static ITracer GetAppLog()
+        {
+            var log = new Logger();
+            return log;
+        }
 
         public void Debug(object message)
         {
-            if(IsDebugEnabled)
+            if (IsDebugEnabled)
                 Log.Debug(message);
         }
 
         public void Debug(object message, Exception exception)
         {
             if (IsDebugEnabled)
-                Log.Debug(message,exception);
+                Log.Debug(message, exception);
         }
 
         public void DebugFormat(string format, params object[] args)
@@ -36,31 +78,31 @@ namespace CS.Diagnostics
         public void DebugFormat(IFormatProvider provider, string format, params object[] args)
         {
             if (IsDebugEnabled)
-                Log.DebugFormat(provider,format, args);
+                Log.DebugFormat(provider, format, args);
         }
 
         public void Info(object message)
         {
-            if(IsInfoEnabled)
+            if (IsInfoEnabled)
                 Log.Info(message);
         }
 
         public void Info(object message, Exception exception)
         {
             if (IsInfoEnabled)
-                Log.Info(message,exception);
+                Log.Info(message, exception);
         }
 
         public void InfoFormat(string format, params object[] args)
         {
             if (IsInfoEnabled)
-                Log.InfoFormat(format,args);
+                Log.InfoFormat(format, args);
         }
 
         public void InfoFormat(IFormatProvider provider, string format, params object[] args)
         {
             if (IsInfoEnabled)
-                Log.InfoFormat(provider,format, args);
+                Log.InfoFormat(provider, format, args);
         }
 
         public void Warn(object message)
@@ -72,7 +114,7 @@ namespace CS.Diagnostics
         public void Warn(object message, Exception exception)
         {
             if (IsWarnEnabled)
-                Log.Warn(message,exception);
+                Log.Warn(message, exception);
         }
 
         public void WarnFormat(string format, params object[] args)
@@ -84,55 +126,55 @@ namespace CS.Diagnostics
         public void WarnFormat(IFormatProvider provider, string format, params object[] args)
         {
             if (IsWarnEnabled)
-                Log.WarnFormat(provider,format, args);
+                Log.WarnFormat(provider, format, args);
         }
 
         public void Error(object message)
         {
-            if(IsErrorEnabled)
+            if (IsErrorEnabled)
                 Log.Error(message);
         }
 
         public void Error(object message, Exception exception)
         {
             if (IsErrorEnabled)
-                Log.Error(message,exception);
+                Log.Error(message, exception);
         }
 
         public void ErrorFormat(string format, params object[] args)
         {
             if (IsErrorEnabled)
-                Log.ErrorFormat(format,args);
+                Log.ErrorFormat(format, args);
         }
 
         public void ErrorFormat(IFormatProvider provider, string format, params object[] args)
         {
             if (IsErrorEnabled)
-                Log.ErrorFormat(provider,format, args);
+                Log.ErrorFormat(provider, format, args);
         }
 
         public void Fatal(object message)
         {
-           if(IsFatalEnabled)
+            if (IsFatalEnabled)
                 Log.Fatal(message);
         }
 
         public void Fatal(object message, Exception exception)
         {
             if (IsFatalEnabled)
-                Log.Fatal(message,exception);
+                Log.Fatal(message, exception);
         }
 
         public void FatalFormat(string format, params object[] args)
         {
             if (IsFatalEnabled)
-                Log.FatalFormat(format,args);
+                Log.FatalFormat(format, args);
         }
 
         public void FatalFormat(IFormatProvider provider, string format, params object[] args)
         {
             if (IsFatalEnabled)
-                Log.FatalFormat(provider,format, args);
+                Log.FatalFormat(provider, format, args);
         }
     }
 }

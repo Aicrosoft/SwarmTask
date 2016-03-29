@@ -42,7 +42,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 程序运行日志 
         /// </summary>
-        private readonly ITracer _log = new SysLog(typeof (Task4WinService));
+        private readonly ITracer _log = CS.Diagnostics.Logger.GetSysLog(typeof(Task4WinService));
 
         /// <summary>
         /// 所有正在运行的任务集合

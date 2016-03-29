@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask.Framwork", "CS.SwarmTask.Framwork\CS.SwarmTask.Framwork.csproj", "{38252BCC-55F2-46CD-8773-99D5B76425EC}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask.Tests", "CS.Sw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask", "CS.SwarmTask\CS.SwarmTask.csproj", "{46D0DF93-4C40-4CF5-B997-49D13BDD566C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHive[v3.0]", "..\..\CSHive\CSHive\CSHive\CSHive[v3.0].csproj", "{F647B933-64CA-473F-945E-6AC0DF657E22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHive[v3.1]", "..\..\CSHive\CSHive\CSHive\CSHive[v3.1].csproj", "{F647B933-64CA-473F-945E-6AC0DF657E22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

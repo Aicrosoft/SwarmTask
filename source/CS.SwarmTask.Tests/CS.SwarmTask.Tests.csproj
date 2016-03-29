@@ -78,10 +78,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CSHive\CSHive\CSHive\CSHive[v3.0].csproj">
-      <Project>{f647b933-64ca-473f-945e-6ac0df657e22}</Project>
-      <Name>CSHive[v3.0]</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CS.SwarmTask.Framwork\CS.SwarmTask.Framwork.csproj">
       <Project>{38252bcc-55f2-46cd-8773-99d5b76425ec}</Project>
       <Name>CS.SwarmTask.Framwork</Name>

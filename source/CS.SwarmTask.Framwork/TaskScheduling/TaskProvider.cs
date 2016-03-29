@@ -38,7 +38,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 程序运行日志
         /// </summary>
-        protected readonly ITracer Log = new SysLog(typeof (TaskProvider));
+        protected readonly ITracer Log = CS.Diagnostics.Logger.GetSysLog(typeof (TaskProvider));
 
         /// <summary>
         /// 保存运行状态时的互斥体，共享变量，全局唯一

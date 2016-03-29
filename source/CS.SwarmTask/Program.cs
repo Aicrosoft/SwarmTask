@@ -45,7 +45,7 @@ namespace CS.SwarmTask
         ///// </summary>
         //private static readonly ILog logRun = LogManager.GetLogger(typeof(TaskService));
 
-        private static readonly ITracer log = new SysLog(typeof(TaskService));
+        private static readonly ITracer log = CS.Diagnostics.Logger.GetSysLog(typeof(TaskService));
 
         #region 应用程序入口
 
