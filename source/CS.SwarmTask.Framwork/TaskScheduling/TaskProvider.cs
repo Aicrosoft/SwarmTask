@@ -173,13 +173,13 @@ namespace CS.TaskScheduling
                 //执行今日任务
                 _runTimes++;
                 var now = SystemTime.Now();
-                Log.Info($"[{this}] 第{_runTimes}次执行开始。[{now:HH:mm:ss ffff}] ◇");
+                //Log.Info($"[{this}] 第{_runTimes}次执行开始。[{now:HH:mm:ss ffff}] ◇");
                 ChangeStatus(TaskRunStatusType.Working);
                 var val = WorkHandler(); //同步委托，任务执行[可能较耗时]
                 ChangeStatus(TaskRunStatusType.Worked);
                 Task.Execution.LastRun = now;
                 var runSpan = SystemTime.Now() - now;
-                Log.Info($"[{this}] 执行结果[{val.Result} : {val.Message}]，耗时:{runSpan}");
+                Log.Info($"[{this}] 第{_runTimes}次执行结果[{val.Result} : {val.Message}] [Execution:{runSpan}]");
 
                 //Note:工作完成后的状态处理
                 //Note:注意，这里的错误次数实际上是执行失败的次数

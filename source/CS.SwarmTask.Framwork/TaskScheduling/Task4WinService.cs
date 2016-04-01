@@ -219,7 +219,7 @@ namespace CS.TaskScheduling
                 _watcher.Elapsed += Working;
                 _watcher.Start(); //启动工作回调
                 _log.Debug($"监视工人第一次工作将于{TimeSpan.FromMilliseconds(_watcher.Interval)}后执行");
-                _log.DebugFormat("----- 服务启动完成 -----");
+                _log.Debug("----- 服务启动完成 -----");
             }
         }
 
