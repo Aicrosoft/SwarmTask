@@ -119,7 +119,7 @@ namespace CS.TaskScheduling
                 if (task.Task.Execution.RunStatus != TaskRunStatusType.Removing) continue;
                 task.Dispose();
                 var val = Tasks.Remove(task);
-                _log.Info($"[{task}] 的移除结果：{val}。");
+                _log.Debug($"[{task}] 的移除结果：{val}。");
             }
         }
 
@@ -176,7 +176,7 @@ namespace CS.TaskScheduling
                     //task.InitPreExetend();
                     task.InitExtend(); //由于非new方式创建实现，无法在构造中获得配置
                     task.Start();
-                    _log.Info($"[{taskSetting}] 实例化成功。");
+                    _log.Debug($"[{taskSetting}] 实例化成功。");
                 }
                 else
                 {

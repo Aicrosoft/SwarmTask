@@ -198,13 +198,13 @@ namespace CS.TaskScheduling
                     if (runInterval == null)
                     {
                         ChangeStatus(TaskRunStatusType.Removing);
-                        Log.Warn($"[{this}] 下次运行时间为null，当前任务停止。");
+                        Log.Debug($"[{this}] 下次运行时间为null，当前任务停止。");
                         return;
                     }
                     if (runInterval.Value.TotalMilliseconds > WorkerInterval*5)
                     {
                         ChangeStatus(TaskRunStatusType.Removing);
-                        Log.Warn($"[{this}] 下次运行时间{runInterval}，超过5倍工作线程间隔，暂时移除执行队列。当前任务停止。");
+                        Log.Debug($"[{this}] 下次运行时间{runInterval}，超过5倍工作线程间隔，暂时移除执行队列。当前任务停止。");
                         return;
                     }
 
@@ -223,7 +223,7 @@ namespace CS.TaskScheduling
                     //Task.Meta.Execution.LastSucceedRun = PathDate ?? now;   //Note:可自动补全点
                     //Task.Meta.Execution.RunStatus = TaskRunStatusType.TodayComplete;
                     ChangeStatus(TaskRunStatusType.Removing);
-                    Log.Info($"■ [{this}] ({Task.Execution.LastSucceedRun})完成。■");
+                    Log.Debug($"■ [{this}] ({Task.Execution.LastSucceedRun})完成。■");
                     return;
                 }
 
