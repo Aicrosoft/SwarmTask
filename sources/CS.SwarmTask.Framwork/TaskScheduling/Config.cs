@@ -40,7 +40,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 程序运行日志 
         /// </summary>
-        private static readonly ITracer logRun = new SysLog(typeof(Task4WinService));
+        private static readonly ITracer logRun = CS.Diagnostics.Logger.GetSysLog(typeof(Task4WinService));
 
         /// <summary>
         /// 文件名
@@ -321,7 +321,7 @@ namespace CS.TaskScheduling
     {
         private const string FILE_NAME = "Tasks.Execution.xml";
 
-        private static readonly Logger log = new SysLog(typeof(ExecutionStatus));
+        private static readonly ITracer log = CS.Diagnostics.Logger.GetSysLog(typeof (ExecutionStatus));
 
         /// <summary>
         /// 文件名

@@ -28,7 +28,7 @@ namespace CS.TaskScheduling
     ///  </history>
     public class TaskDemo:TaskProvider
     {
-        private readonly ITracer _logWork = new AppLog();
+        private readonly ITracer _logWork = CS.Diagnostics.Logger.GetAppLog();
 
 
         private static readonly Random rand = new Random();

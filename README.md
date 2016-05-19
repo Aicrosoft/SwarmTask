@@ -47,6 +47,7 @@
  - 继承TaskProvider类后，重写protected override Result Work() 即可；
  - 如果自已扩展了Extend节点，则要重写public override void InitExtend()方法；
  - 具体备置可参见Tasks.config文件
+ - 注意：不要在构造方法中读取配置文件信息
 
 ### 六、WindService的调试：
 

@@ -42,7 +42,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 程序运行日志 
         /// </summary>
-        private readonly ITracer _log = new SysLog(typeof (Task4WinService));
+        private readonly ITracer _log = CS.Diagnostics.Logger.GetSysLog(typeof(Task4WinService));
 
         /// <summary>
         /// 所有正在运行的任务集合
@@ -119,7 +119,7 @@ namespace CS.TaskScheduling
                 if (task.Task.Execution.RunStatus != TaskRunStatusType.Removing) continue;
                 task.Dispose();
                 var val = Tasks.Remove(task);
-                _log.Info($"[{task}] 的移除结果：{val}。");
+                _log.Debug($"[{task}] 的移除结果：{val}。");
             }
         }
 
@@ -146,8 +146,10 @@ namespace CS.TaskScheduling
                 return null;
             }
             var delayMilSeconds = nextRunInterval.Value.TotalMilliseconds;
-            if (delayMilSeconds > _watcher.Interval *  3)
+            var interval = (TimeSpan) TaskSetting.WatchTimer.WorkingInterval;
+            if (delayMilSeconds >  interval.TotalMilliseconds *   3)
             {
+                //_log.Warn($"delayMilSeconds:{delayMilSeconds};_watcher.Interval:{interval}");
                 _log.Debug($"○ [{taskSetting}] 下次启动时间间隔为:{nextRunInterval}，远小于监视线程间隔，暂不执行。");
                 return null;
             }
@@ -174,7 +176,7 @@ namespace CS.TaskScheduling
                     //task.InitPreExetend();
                     task.InitExtend(); //由于非new方式创建实现，无法在构造中获得配置
                     task.Start();
-                    _log.Info($"[{taskSetting}] 实例化成功。");
+                    _log.Debug($"[{taskSetting}] 实例化成功。");
                 }
                 else
                 {
@@ -217,7 +219,7 @@ namespace CS.TaskScheduling
                 _watcher.Elapsed += Working;
                 _watcher.Start(); //启动工作回调
                 _log.Debug($"监视工人第一次工作将于{TimeSpan.FromMilliseconds(_watcher.Interval)}后执行");
-                _log.DebugFormat("----- 服务启动完成 -----");
+                _log.Debug("----- 服务启动完成 -----");
             }
         }
 

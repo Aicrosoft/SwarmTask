@@ -38,7 +38,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 程序运行日志
         /// </summary>
-        protected readonly ITracer Log = new SysLog(typeof (TaskProvider));
+        protected readonly ITracer Log = CS.Diagnostics.Logger.GetSysLog(typeof (TaskProvider));
 
         /// <summary>
         /// 保存运行状态时的互斥体，共享变量，全局唯一
@@ -63,7 +63,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 共公资源配置信息引用
         /// </summary>
-        internal ResourceCollection Resources { get; set; }
+        internal protected ResourceCollection Resources { get; set; }
 
         /// <summary>
         /// 系统自带的预定义扩展
@@ -173,13 +173,13 @@ namespace CS.TaskScheduling
                 //执行今日任务
                 _runTimes++;
                 var now = SystemTime.Now();
-                Log.Info($"[{this}] 第{_runTimes}次执行开始。[{now:HH:mm:ss ffff}] ◇");
+                //Log.Info($"[{this}] 第{_runTimes}次执行开始。[{now:HH:mm:ss ffff}] ◇");
                 ChangeStatus(TaskRunStatusType.Working);
                 var val = WorkHandler(); //同步委托，任务执行[可能较耗时]
                 ChangeStatus(TaskRunStatusType.Worked);
                 Task.Execution.LastRun = now;
                 var runSpan = SystemTime.Now() - now;
-                Log.Info($"[{this}] 执行结果[{val.Result} : {val.Message}]，耗时:{runSpan}");
+                Log.Info($"[{this}] 第{_runTimes}次执行结果[{val.Result} : {val.Message}] [Execution:{runSpan}]");
 
                 //Note:工作完成后的状态处理
                 //Note:注意，这里的错误次数实际上是执行失败的次数
@@ -198,13 +198,13 @@ namespace CS.TaskScheduling
                     if (runInterval == null)
                     {
                         ChangeStatus(TaskRunStatusType.Removing);
-                        Log.Warn($"[{this}] 下次运行时间为null，当前任务停止。");
+                        Log.Debug($"[{this}] 下次运行时间为null，当前任务停止。");
                         return;
                     }
                     if (runInterval.Value.TotalMilliseconds > WorkerInterval*5)
                     {
                         ChangeStatus(TaskRunStatusType.Removing);
-                        Log.Warn($"[{this}] 下次运行时间{runInterval}，超过5倍工作线程间隔，暂时移除执行队列。当前任务停止。");
+                        Log.Debug($"[{this}] 下次运行时间{runInterval}，超过5倍工作线程间隔，暂时移除执行队列。当前任务停止。");
                         return;
                     }
 
@@ -223,7 +223,7 @@ namespace CS.TaskScheduling
                     //Task.Meta.Execution.LastSucceedRun = PathDate ?? now;   //Note:可自动补全点
                     //Task.Meta.Execution.RunStatus = TaskRunStatusType.TodayComplete;
                     ChangeStatus(TaskRunStatusType.Removing);
-                    Log.Info($"■ [{this}] ({Task.Execution.LastSucceedRun})完成。■");
+                    Log.Debug($"■ [{this}] ({Task.Execution.LastSucceedRun})完成。■");
                     return;
                 }
 

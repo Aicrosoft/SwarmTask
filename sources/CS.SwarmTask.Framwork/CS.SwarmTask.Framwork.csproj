@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="CSHive, Version=3.2.0.32494, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSHive.3.2.0.0\lib\net45\CSHive.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -44,11 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CS.SwarmTask\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Delegates.cs" />
-    <Compile Include="Diagnostics\AppLog.cs" />
     <Compile Include="Diagnostics\Logger.cs" />
-    <Compile Include="Diagnostics\SysLog.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoExt.cs" />
     <Compile Include="TaskScheduling\Config.cs" />
     <Compile Include="TaskScheduling\CronExpression.cs" />
     <Compile Include="TaskScheduling\Enums.cs" />
@@ -71,12 +77,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CSHive\CSHive\CSHive\CSHive[v3.0].csproj">
-      <Project>{f647b933-64ca-473f-945e-6ac0df657e22}</Project>
-      <Name>CSHive[v3.0]</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
