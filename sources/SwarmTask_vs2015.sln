@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask.Tests", "CS.Sw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask", "CS.SwarmTask\CS.SwarmTask.csproj", "{46D0DF93-4C40-4CF5-B997-49D13BDD566C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSHive[v3.1]", "..\..\CSHive\CSHive\CSHive\CSHive[v3.1].csproj", "{F647B933-64CA-473F-945E-6AC0DF657E22}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,14 +41,6 @@ Global
 		{46D0DF93-4C40-4CF5-B997-49D13BDD566C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46D0DF93-4C40-4CF5-B997-49D13BDD566C}.Release|x86.ActiveCfg = Release|Any CPU
 		{46D0DF93-4C40-4CF5-B997-49D13BDD566C}.Release|x86.Build.0 = Release|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Debug|x86.Build.0 = Debug|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Release|x86.ActiveCfg = Release|Any CPU
-		{F647B933-64CA-473F-945E-6AC0DF657E22}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
