@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>swarm.ico</ApplicationIcon>
+    <ApplicationIcon>29.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>2F966A267A174DCB827A5E3C0DF88E7EBB4AA7E5</ManifestCertificateThumbprint>
@@ -107,6 +107,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="129.ico" />
+    <Content Include="29.ico" />
     <Content Include="swarm.ico" />
   </ItemGroup>
   <ItemGroup>
