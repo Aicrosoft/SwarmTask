@@ -6,6 +6,11 @@
  - 原项目地址：[https://wstask.codeplex.com/](https://wstask.codeplex.com/)  ，2015-09-25 项目更名为SwarmTask（中文代号：蜂群）；
  - 以高性能，高效率为升级设计目标，升级项目为VS2015 IDE环境 , .Net版本4.5
 
+### Build & Test Status ###
+----------
+[![Build status](https://ci.appveyor.com/api/projects/status/v13yv1rxsb39v8ph?svg=true)](https://ci.appveyor.com/project/cswares/swarmtask)
+
+
 ----------
 
 ### 一、功能摘要：

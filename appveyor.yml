@@ -1,0 +1,101 @@
+﻿#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+# version format
+version: '{build}-{branch}'
+
+# you can use {branch} name in version format too
+# version: 1.0.{build}-{branch}
+
+
+# Skipping commits with particular message or from user
+skip_commits:
+  message: /Created.*\.(png|jpg|jpeg|bmp|gif)/       # Regex for matching commit message
+  #author: John        # Commit author's username, name, email or regexp maching one of these.
+
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# environment variables
+environment:
+  appName: CS.SwarmTask
+  libName: CS.SwarmTask.Framwork
+  # this is how to set encrypted variable. Go to "Encrypt data" page in account menu to encrypt data. use it by $(nuget_api_key)
+  nuget_api_key:
+    secure: /Z553zFSrf/BSO3PX8dmc0XWOLA034CYAOhp8ZubIlpTHGG5h2O25K9STPOf80Aq
+
+
+# enable patching of AssemblyInfo.* files
+assembly_info:
+  patch: false
+  file: sources\$(libName)\Properties\AssemblyInfo.*      #将上面生成的版本号${version}变量替换原来Lib里的版本信息
+  assembly_version: '{version}'
+  assembly_file_version: '4.5.0.0'
+  assembly_informational_version: '{version}-rc1'
+
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+  
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
+configuration:
+#  - Debug
+  - Release
+#
+#matrix:
+#  fast_finish: true
+
+nuget:
+  project_feed: true
+
+build:
+  parallel: true                  # enable MSBuild parallel builds
+  publish_wap_xcopy: true
+  publish_nuget: true             # package projects with .nuspec files and push to artifacts
+  publish_nuget_symbols: true     # generate and publish NuGet symbol packages
+  include_nuget_references: true  # add -IncludeReferencedProjects option while packaging NuGet artifacts
+  
+  # MSBuild verbosity level :  quiet|minimal|normal|detailed
+  verbosity: minimal
+  
+# scripts to run before build
+before_build:
+  nuget restore sources\SwarmTask_vs2015.sln
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+artifacts:
+    
+  - path: sources\$(libName)\bin\$(configuration)\
+    name: Framework
+
+  - path: sources\$(appName)\bin\$(configuration)\
+    name: Task
+
+# pushing all *.nupkg files in directory
+  - path: out\*.nupkg
+
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+  
+#after_test:
+#  - ps: .\nuget\libpack.ps1  ###当项目中发现了对应工程文件 *.csproj 的对应的*.nuspec 配置信息会自动生成发行包与调试包(依赖build.publish_nuget的相关参数)，然后在布署中自动发布。
+
+ 
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#  
+  
+deploy:
+  provider: NuGet
+  api_key: $(nuget_api_key)
+  artifact: /.*\.nupkg/

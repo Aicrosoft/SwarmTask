@@ -59,23 +59,25 @@ namespace CS.TaskScheduling
 
     /// <summary>
     /// 资源的参数的键值对
-    /// <example>
-    ///  <add key="Sender" value="">
-    ///	  <text>
-    ///	  <![CDATA[
-    ///       带格式的文本内容
-    ///       ]]>
-    ///	  </text>
-    /// </example>
     /// </summary>
     [Serializable]
     public struct ParamInfo
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public ParamInfo(string key, string value) : this(key, value, string.Empty)
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="text"></param>
         public ParamInfo(string key, string value,string text)
         {
             _key = key;

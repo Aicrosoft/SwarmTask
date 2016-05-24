@@ -172,6 +172,10 @@ namespace CS.TaskScheduling
 
         #endregion
 
+        /// <summary>
+        /// 重写ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{Meta.Id}:{Meta.Name}";
