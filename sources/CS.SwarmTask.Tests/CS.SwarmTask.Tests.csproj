@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DdnsTests\IpHelperTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempTest\CronExpressionTest.cs" />
@@ -81,6 +82,10 @@
     <ProjectReference Include="..\CS.SwarmTask.Framwork\CS.SwarmTask.Framwork.csproj">
       <Project>{38252bcc-55f2-46cd-8773-99d5b76425ec}</Project>
       <Name>CS.SwarmTask.Framwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CS.SwarmTask\CS.SwarmTask.csproj">
+      <Project>{46d0df93-4c40-4cf5-b997-49d13bdd566c}</Project>
+      <Name>CS.SwarmTask</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

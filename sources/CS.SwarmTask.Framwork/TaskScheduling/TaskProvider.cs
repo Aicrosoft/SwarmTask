@@ -434,9 +434,14 @@ namespace CS.TaskScheduling
         }
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public enum TaskProviderStatusType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Working,
 
         /// <summary>

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask.Tests", "CS.Sw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS.SwarmTask", "CS.SwarmTask\CS.SwarmTask.csproj", "{46D0DF93-4C40-4CF5-B997-49D13BDD566C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdLibs", "ThirdLibs", "{0DAA0116-8828-442B-9B0C-15FD69F0A0C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNSPod", "DNSPod\DNSPod.csproj", "{67739578-44C0-4DCD-8947-AC266DF878D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,8 +45,19 @@ Global
 		{46D0DF93-4C40-4CF5-B997-49D13BDD566C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46D0DF93-4C40-4CF5-B997-49D13BDD566C}.Release|x86.ActiveCfg = Release|Any CPU
 		{46D0DF93-4C40-4CF5-B997-49D13BDD566C}.Release|x86.Build.0 = Release|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Debug|x86.Build.0 = Debug|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Release|x86.ActiveCfg = Release|Any CPU
+		{67739578-44C0-4DCD-8947-AC266DF878D5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67739578-44C0-4DCD-8947-AC266DF878D5} = {0DAA0116-8828-442B-9B0C-15FD69F0A0C9}
 	EndGlobalSection
 EndGlobal

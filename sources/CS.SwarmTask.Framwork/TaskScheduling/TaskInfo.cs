@@ -231,6 +231,9 @@ namespace CS.TaskScheduling
     [Serializable]
     public class ExecutionInfo
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ExecutionInfo()
         {
         }

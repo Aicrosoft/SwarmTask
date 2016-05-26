@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{38252BCC-55F2-46CD-8773-99D5B76425EC}</ProjectGuid>
+    <ProjectGuid>{67739578-44C0-4DCD-8947-AC266DF878D5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CS</RootNamespace>
-    <AssemblyName>CS.SwarmTask.Framwork</AssemblyName>
+    <RootNamespace>DNSPod</RootNamespace>
+    <AssemblyName>DNSPod</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\CS.SwarmTask.Framwork.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,15 +29,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\CS.SwarmTask.Framwork.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSHive, Version=3.2.0.20, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CSHive.3.2.0.20\lib\net45\CSHive.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -51,32 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DNSPodBase.cs" />
+    <Compile Include="DNSPodBatch.cs" />
+    <Compile Include="DnsPodConfiguration.cs" />
+    <Compile Include="DNSPodDomain.cs" />
+    <Compile Include="DNSPodRecord.cs" />
+    <Compile Include="DnsPodUser.cs" />
+    <Compile Include="IDNSPod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Delegates.cs" />
-    <Compile Include="Diagnostics\Logger.cs" />
-    <Compile Include="Properties\AssemblyInfoExt.cs" />
-    <Compile Include="TaskScheduling\Config.cs" />
-    <Compile Include="TaskScheduling\CronExpression.cs" />
-    <Compile Include="TaskScheduling\Enums.cs" />
-    <Compile Include="TaskScheduling\ExtendInfo.cs" />
-    <Compile Include="TaskScheduling\ISortedSet.cs" />
-    <Compile Include="TaskScheduling\ResourceInfo.cs" />
-    <Compile Include="TaskScheduling\SystemTime.cs" />
-    <Compile Include="TaskScheduling\Task4WinService.cs" />
-    <Compile Include="TaskScheduling\TaskContext.cs" />
-    <Compile Include="TaskScheduling\TaskDemo.cs" />
-    <Compile Include="TaskScheduling\TaskExtendBase.cs" />
-    <Compile Include="TaskScheduling\TaskInfo.cs" />
-    <Compile Include="TaskScheduling\TaskProvider.cs" />
-    <Compile Include="TaskScheduling\TaskResult.cs" />
-    <Compile Include="TaskScheduling\TreeSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Tasks.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

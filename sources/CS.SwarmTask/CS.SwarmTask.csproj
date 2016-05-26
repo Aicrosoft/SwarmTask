@@ -58,14 +58,20 @@
     <ManifestKeyFile>CS.SwarmTask_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSHive, Version=3.2.0.32494, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CSHive.3.2.0.0\lib\net45\CSHive.dll</HintPath>
+    <Reference Include="CSHive, Version=3.2.0.20, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSHive.3.2.0.20\lib\net45\CSHive.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -85,6 +91,8 @@
     <Compile Include="..\CS.SwarmTask.Framwork\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Jobs\Ddns\DdnsJob.cs" />
+    <Compile Include="Jobs\Ddns\IpHelper.cs" />
     <Compile Include="Program.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -96,16 +104,24 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="config\dnspod.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CS.SwarmTask.Framwork\CS.SwarmTask.Framwork.csproj">
       <Project>{38252bcc-55f2-46cd-8773-99d5b76425ec}</Project>
       <Name>CS.SwarmTask.Framwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DNSPod\DNSPod.csproj">
+      <Project>{67739578-44c0-4dcd-8947-ac266df878d5}</Project>
+      <Name>DNSPod</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +139,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
