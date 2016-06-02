@@ -38,7 +38,7 @@ namespace CS.TaskScheduling
         /// <summary>
         /// 程序运行日志
         /// </summary>
-        protected readonly ITracer Log = CS.Diagnostics.Logger.GetSysLog(typeof (TaskProvider));
+        protected readonly ITracer Log = Logger.GetSysLog(typeof(TaskProvider));
 
         /// <summary>
         /// 保存运行状态时的互斥体，共享变量，全局唯一
@@ -50,9 +50,9 @@ namespace CS.TaskScheduling
         ///// </summary>
         //protected static readonly Mutex WorkingMutex = new Mutex(false);
 
-            /// <summary>
-            /// 工作线程调用间隔，毫秒
-            /// </summary>
+        /// <summary>
+        /// 工作线程调用间隔，毫秒
+        /// </summary>
         public double WorkerInterval { get; set; }
 
         /// <summary>
@@ -175,9 +175,24 @@ namespace CS.TaskScheduling
                 var now = SystemTime.Now();
                 //Log.Info($"[{this}] 第{_runTimes}次执行开始。[{now:HH:mm:ss ffff}] ◇");
                 ChangeStatus(TaskRunStatusType.Working);
-                var val = WorkHandler(); //同步委托，任务执行[可能较耗时]
-                ChangeStatus(TaskRunStatusType.Worked);
-                Task.Execution.LastRun = now;
+                var val = new TaskResult();
+                try
+                {
+                    val = WorkHandler(); //同步委托，任务执行[可能较耗时]
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"执行任务<{Task}>时发生异常:", ex);
+                    //throw;
+                    val.Result = TaskResultType.Error;
+                    val.ExtendMessage = ex.Message;
+                }
+                finally
+                {
+                    ChangeStatus(TaskRunStatusType.Worked);
+                    Task.Execution.LastRun = now;
+                }
+               
                 var runSpan = SystemTime.Now() - now;
                 Log.Info($"[{this}] 第{_runTimes}次执行结果[{val.Result} : {val.Message}] [Execution:{runSpan}]");
 
@@ -185,7 +200,7 @@ namespace CS.TaskScheduling
                 //Note:注意，这里的错误次数实际上是执行失败的次数
                 if (val.Result.HasFlag(TaskResultType.Error))
                 {
-                    var sleepInterval = ((TimeSpan) Task.WorkSetting.SleepInterval);
+                    var sleepInterval = ((TimeSpan)Task.WorkSetting.SleepInterval);
                     Task.Execution.SleepTimes++;
                     Log.Warn($"[{this}] 状态更新[{val.Result}],休眠次数++ ，准备[{sleepInterval}]后再次执行");
                     TaskWorker.Change(sleepInterval, TimeSpan.FromMilliseconds(-1));
@@ -201,7 +216,7 @@ namespace CS.TaskScheduling
                         Log.Debug($"[{this}] 下次运行时间为null，当前任务停止。");
                         return;
                     }
-                    if (runInterval.Value.TotalMilliseconds > WorkerInterval*5)
+                    if (runInterval.Value.TotalMilliseconds > WorkerInterval * 5)
                     {
                         ChangeStatus(TaskRunStatusType.Removing);
                         Log.Debug($"[{this}] 下次运行时间{runInterval}，超过5倍工作线程间隔，暂时移除执行队列。当前任务停止。");
@@ -245,6 +260,7 @@ namespace CS.TaskScheduling
                 }
 
                 #endregion
+
             }
             catch (Exception ex)
             {

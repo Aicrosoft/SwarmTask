@@ -37,13 +37,8 @@ namespace CS.TaskScheduling
         public TaskInfo()
         {
             Meta = new MetaInfo {Id = Guid.NewGuid().ToString()};
-            WorkSetting = new WorkSettingInfo
-            {
-                Times = 0,
-                ErrorWay = ErrorWayType.Default,
-                SleepInterval = new TimeSpan(1, 1, 1, 1),
-            };
-            TimeTrigger = "0 0-10 * * * ? ";//默认每10分钟的0秒开始执行
+            WorkSetting = new WorkSettingInfo();
+            TimeTrigger = "1 0/10 * * * ? *";//默认每10分钟的1秒执行
             Extend = new object();
         }
 
@@ -314,6 +309,16 @@ namespace CS.TaskScheduling
     [Serializable]
     public class WorkSettingInfo
     {
+        /// <summary>
+        /// 默认初始化
+        /// </summary>
+        public WorkSettingInfo()
+        {
+            Times = 0;
+            ErrorWay = ErrorWayType.Default;
+            SleepInterval = new WorkTimeSpan();
+        }
+
         ///// <summary>
         ///// 需要时的任务延时，秒
         ///// </summary>
@@ -321,11 +326,17 @@ namespace CS.TaskScheduling
         //public int DelaySecond { get; set; }
 
         /// <summary>
-        /// 任务超时时间，秒
+        /// 任务超时时间，秒（暂未用上）
         /// </summary>
         [XmlAttribute("timeout")]
         public int Timeout { get; set; }
 
+        /// <summary>
+        /// 运行的总次数，超过多少次后不再运行
+        /// <remarks>
+        /// TODO:目前的计数好像有问题，当执行时间间隔小于守护线程的间隔时，计数会被重置。
+        /// </remarks>
+        /// </summary>
         [XmlAttribute("times")]
         public int Times { get; set; }
 
@@ -406,10 +417,16 @@ namespace CS.TaskScheduling
     public class WorkTimeSpan
     {
         private TimeSpan _timeSpan;
-        public WorkTimeSpan()
+        /// <summary>
+        /// 默认为暂停5分钟
+        /// </summary>
+        public WorkTimeSpan():this(new TimeSpan(0,0,5,0))
         {
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="time"></param>
         public WorkTimeSpan(TimeSpan time)
         {
             _timeSpan = time;
@@ -432,7 +449,7 @@ namespace CS.TaskScheduling
         }
 
         /// <summary>
-        /// 隐式转换 MyTimeSpan -> TimeSpan
+        /// 隐式转换 WorkTimeSpan -> TimeSpan
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
@@ -442,7 +459,7 @@ namespace CS.TaskScheduling
         }
 
         /// <summary>
-        /// 隐式转换 TimeSpan -> MyTimeSpan
+        /// 隐式转换 TimeSpan -> WorkTimeSpan
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>

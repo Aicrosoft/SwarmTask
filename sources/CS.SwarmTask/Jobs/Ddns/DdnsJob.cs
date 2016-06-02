@@ -28,14 +28,14 @@ namespace CS.SwarmTask.Jobs.Ddns
                 if (ok)
                 {
                     rst.Result = TaskResultType.Succeed;
-                    rst.Message = $"已将所有泛解析更新了IP地址指向[effecteds:{_ups},change: <{oldIp}> -> <{ip}>][elapsed:{sw.Elapsed}]";
+                    rst.Message = $"已将所有泛解析更新了IP地址指向[effecteds:<{_ups}>,change: <{oldIp}> -> <{ip}>][elapsed:<{sw.Elapsed}>]";
                     oldIp = ip;
                 }
                 else
                 {
                     rst.Result = TaskResultType.Failed;
-                    rst.Message = $"更新IP地址失败[change: <{oldIp}> -> <{ip}>][elapsed:{sw.Elapsed}]";
-                    Log.Warn($"更新地址失败[change: <{oldIp}> -> <{ip}>][elapsed:{sw.Elapsed}]");
+                    rst.Message = $"更新IP地址失败[change: <{oldIp}> -> <{ip}>][elapsed:<{sw.Elapsed}>]";
+                    Log.Warn($"更新地址失败[change: <{oldIp}> -> <{ip}>][elapsed:<{sw.Elapsed}>]");
                 }
             }
             else
@@ -69,6 +69,7 @@ namespace CS.SwarmTask.Jobs.Ddns
             }
             var domains = result.domains;
             var rst = true; //更新结果为真
+            _ups = 0;
             foreach (dynamic domain in domains)
             {
                 var domainId = 0;
@@ -99,7 +100,6 @@ namespace CS.SwarmTask.Jobs.Ddns
                 }
                 else
                 {
-                    _ups = 0;
                     foreach (dynamic rd in rdRst.records)
                     {
                         recordId = rd.id;

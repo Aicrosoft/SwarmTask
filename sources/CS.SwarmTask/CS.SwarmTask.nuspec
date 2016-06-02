@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright cszi.com 2011</copyright>
-    <tags>Schedul,Job,Task,WinService,Corn,Framework</tags>
+    <tags>Schedul,Job,Task,WinService,Corn,DNSPod,DDNS</tags>
   </metadata>
   <files>
     <file src=".\bin\Release\*.*" target="lib\net4.5" />

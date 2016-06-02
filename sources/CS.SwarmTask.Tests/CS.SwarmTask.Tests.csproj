@@ -71,6 +71,7 @@
     <Compile Include="DdnsTests\IpHelperTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskSchedulingTests\TimeSpanTests.cs" />
     <Compile Include="TempTest\CronExpressionTest.cs" />
     <Compile Include="TempTest\TempTests.cs" />
   </ItemGroup>

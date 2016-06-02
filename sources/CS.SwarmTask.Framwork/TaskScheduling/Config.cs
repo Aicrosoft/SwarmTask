@@ -287,10 +287,13 @@ namespace CS.TaskScheduling
     [XmlRoot("Timer")]
     public class TimerConfig
     {
+        /// <summary>
+        /// 默认构造
+        /// </summary>
         public TimerConfig()
         {
             DelayMillisecond = 500;
-            WorkingInterval = new WorkTimeSpan(new TimeSpan(0, 0, 0, 1));
+            WorkingInterval = new WorkTimeSpan();
         }
 
         /// <summary>

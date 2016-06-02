@@ -49,6 +49,7 @@ namespace CS.TaskScheduling
 
             _logWork.InfoFormat("我是执行的任务,工作了{0}秒", rs / 1000);
 
+            throw new NotSupportedException("测试用");
             return new TaskResult() { Result = stamp };
         }
 
