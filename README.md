@@ -1,3 +1,5 @@
+# 请移步：[/RiseSoho/BeesTask](https://github.com/RiseSoho/BeesTask) 查看跨平台版本
+
 # SwarmTask [WindowsService TaskScheduler]
 
 #### 欢迎使用**蜂群**任务框架，注意：此框架针对开发人员。
