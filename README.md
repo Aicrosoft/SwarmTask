@@ -1,4 +1,4 @@
-# 请移步：[/RiseSoho/BeesTask](https://github.com/RiseSoho/BeesTask) 查看跨平台版本
+# 该项目已过期，移步：[JobAgent](https://github.com/neatFactory/JobAgent) 查看最新的跨平台版本
 
 # SwarmTask [WindowsService TaskScheduler]
 
